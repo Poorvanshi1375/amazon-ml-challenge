@@ -1,0 +1,17 @@
+submission,description,holdout_f05,public_lb_f05,kind
+tier0,minimal pipeline (normalisation + TF-IDF blocking + LightGBM),,0.919000,model
+tier2,learned dictionary + per-country rewrites + learned partitions + learned pruning,0.98282,0.960243,model
+t2_thr040,tier2 decoded at threshold 0.40 (direction probe: recall vs precision),,0.950991,probe
+probe_france_empty,tier2 with every French S1 left empty (per-country probe),,0.826972,probe
+t2_and_t3,keep only matches tier2 and tier3 agree on,,0.961544,model
+t3_la12,tier3 (look-alike + group features) + look-alike shift 1.2,,0.962619,model
+t3_la12_nb20d2,tier3 + shift 1.2 + neighbour rule,,0.962257,model
+t3b_w5,tier3 with positive-class weight x5,,0.960080,model
+t4_la12,tier4 (uniqueness features) + shift 1.2,0.98395,0.964527,model
+t4_la25,tier4 + shift 2.5,0.98118,0.966559,model
+t4_la35,tier4 + shift 3.5,0.97755,0.965112,model
+t5u_la25,tier5 (stage-2 sibling model) + shift 2.5,0.98379,0.965848,model
+t5u_la35,tier5 + shift 3.5,0.98150,0.966391,model
+probe_us_only,t4_la25 with India and France S1 left empty (per-country probe),,0.447443,probe
+ef05_fr,blend tier4+tier5 + French rules + calibrated expected-F0.5 decoding (alpha 1.0),0.98317,0.967192,model
+ef05_fr_a15,same with alpha 1.5 (final submission),0.98319,0.967216,model
