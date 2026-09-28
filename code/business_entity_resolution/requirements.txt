@@ -1,0 +1,13 @@
+# Python 3.12.3 on Ubuntu 24.04 (tested on AWS EC2 r6i.2xlarge: 8 vCPU, 64 GB RAM). CPU only.
+pandas==2.3.2
+numpy==2.3.2
+pyarrow==21.0.0
+scipy==1.16.1
+scikit-learn==1.7.1
+lightgbm==4.7.0
+rapidfuzz==3.14.5
+sparse-dot-topn==1.2.0
+anyascii==0.3.3
+jellyfish==1.2.1
+joblib==1.6.0
+threadpoolctl==3.7.0

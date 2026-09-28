@@ -1,0 +1,15 @@
+# data and generated files (challenge data is not redistributed)
+dataset/
+data/
+artifacts/
+output/
+*.tsv
+*.parquet
+*.zip
+*.gz
+*.pkl
+*.log
+__pycache__/
+*.pyc
+.venv/
+venv/
