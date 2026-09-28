@@ -61,7 +61,7 @@ raw TSVs
 | + stage-2 model blend, French rules, calibrated expected-F0.5 decoding | 0.98319 (unseen half) | **0.967216** |
 
 The holdout (10% of training entities) is drawn from the training distribution; the gap to the leaderboard reflects the
-train/test shift described above. Full methodology: [`docs/METHODOLOGY.md`](docs/METHODOLOGY.md).
+train/test shift described above. Every upload: [`results/leaderboard.csv`](results/leaderboard.csv). Full methodology: [`docs/METHODOLOGY.md`](docs/METHODOLOGY.md).
 
 ## Repository layout
 
@@ -82,6 +82,9 @@ code/business_entity_resolution/
     ├── finalize.py     # blend, calibration, expected-F0.5 decoding, output files
     ├── decode.py  metric.py  split.py  io_utils.py  config.py  tracking.py  make_smoke.py
 docs/METHODOLOGY.md     # methodology write-up submitted with the solution
+results/leaderboard.csv # every leaderboard upload with holdout and public scores
+tests/                  # unit tests (metric, normalisation, split, decoding) — no data needed
+ROADMAP.md              # what I would do next
 ```
 
 ## Running it
@@ -98,6 +101,17 @@ ER_DATA_DIR=/path/to/data bash run_all.sh      # ~8 h on 8 cores, 64 GB RAM
 Outputs: `output/matching_results.tsv` and `output/candidate_pairs.tsv`. See
 [`code/business_entity_resolution/README.md`](code/business_entity_resolution/README.md) for step-by-step details,
 settings and environment variables.
+
+## Tests
+
+```bash
+pip install -r code/business_entity_resolution/requirements.txt -r requirements-dev.txt
+python -m pytest -q        # 20 tests, a few seconds, no challenge data needed
+```
+
+They check that the metric reproduces the official example (0.714) and the singleton rules, the normalisation rules
+(legal forms, aliases, learned rewrites, "N°16" → 16 for French addresses), the deterministic 10% holdout split, and
+the decoders (one-owner, look-alike shift, expected-F0.5 with a "no match" option).
 
 ## Tech stack
 
